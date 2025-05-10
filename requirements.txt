@@ -5,3 +5,4 @@ email-validator
 WTForms
 Flask-SQLAlchemy
 Werkzeug
+pytest
