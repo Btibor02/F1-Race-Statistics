@@ -1,0 +1,7 @@
+Flask
+Flask-Login
+Flask-WTF
+email-validator
+WTForms
+Flask-SQLAlchemy
+Werkzeug
