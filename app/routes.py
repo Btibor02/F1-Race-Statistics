@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
-from flask_login import login_user, logout_user
+from flask import Blueprint, render_template, redirect, url_for, flash, render_template
+from flask_login import login_user, logout_user, current_user, login_required
 from .forms import LoginForm, RegistrationForm, PasswordResetForm
 from .models import User
 from . import db
@@ -49,3 +49,15 @@ def reset_password():
         else:
             flash('Email not found')
     return render_template('reset_password.html', form=form)
+
+@bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out.')
+    return redirect(url_for('main.login'))
+
+@bp.route('/profile')
+@login_required
+def profile():
+    return render_template('profile.html', user=current_user)
