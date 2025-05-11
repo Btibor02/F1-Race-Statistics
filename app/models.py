@@ -7,9 +7,12 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(150), unique=True, nullable=False)
+    username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(150), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128), nullable=False)
+    password_hash = db.Column(db.String(255), nullable=False)
+    fav_driver_1 = db.Column(db.String(5), nullable=True)
+    fav_driver_2 = db.Column(db.String(5), nullable=True)
+    fav_team = db.Column(db.String(5), nullable=True)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
