@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, SelectField
 from wtforms.validators import DataRequired, EqualTo, ValidationError, Email, Length, Regexp
 from .models import User
 
@@ -35,3 +35,9 @@ class PasswordResetForm(FlaskForm):
         Regexp('^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$', message='Password must contain at least one special character')])
     confirm_password = PasswordField('Confirm New Password', validators=[DataRequired(), EqualTo('new_password')])
     submit = SubmitField('Reset Password')
+
+class ProfileForm(FlaskForm):
+    fav_driver_1 = SelectField('Favorite Driver 1', choices=[('dri1', 'Driver 1'), ('dri2', 'Driver 2'), ('dri3', 'Driver 3')], validators=[DataRequired()])
+    fav_driver_2 = SelectField('Favorite Driver 2', choices=[('dri1', 'Driver 1'), ('dri2', 'Driver 2'), ('dri3', 'Driver 3')], validators=[DataRequired()])
+    fav_team = SelectField('Favorite Team', choices=[('team1', 'Team 1'), ('team2', 'Team 2'), ('team3', 'Team 3')], validators=[DataRequired()])
+    submit = SubmitField('Update Profile')

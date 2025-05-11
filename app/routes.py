@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, render_template
+from flask import Blueprint, render_template, redirect, url_for, flash, render_template, request
 from flask_login import login_user, logout_user, current_user, login_required
-from .forms import LoginForm, RegistrationForm, PasswordResetForm
+from .forms import LoginForm, RegistrationForm, PasswordResetForm, ProfileForm
 from .models import User
 from . import db
 
@@ -57,7 +57,34 @@ def logout():
     flash('You have been logged out.')
     return redirect(url_for('main.login'))
 
-@bp.route('/profile')
+@bp.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
-    return render_template('profile.html', user=current_user)
+    form = ProfileForm()
+
+    if form.validate_on_submit():
+        valid_drivers = ['dri1', 'dri2', 'dri3']
+        if form.fav_driver_1.data not in valid_drivers:
+            form.fav_driver_1.data = 'dri2'
+        if form.fav_driver_2.data not in valid_drivers:
+            form.fav_driver_2.data = 'dri2'
+
+        valid_teams = ['team1', 'team2', 'team3']
+        if form.fav_team.data not in valid_teams:
+            form.fav_team.data = 'team2'
+
+
+        current_user.fav_driver_1 = form.fav_driver_1.data
+        current_user.fav_driver_2 = form.fav_driver_2.data
+        current_user.fav_team = form.fav_team.data
+
+        db.session.commit()
+        flash('Your profile has been updated!')
+        return redirect(url_for('main.profile')) 
+
+    if request.method == 'GET':
+        form.fav_driver_1.data = current_user.fav_driver_1 or 'dri2'
+        form.fav_driver_2.data = current_user.fav_driver_2 or 'dri2'
+        form.fav_team.data = current_user.fav_team or 'team2'
+
+    return render_template('profile.html', form=form, user=current_user)
