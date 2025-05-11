@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Btibor02/F1-Race-Statistics/issues"
   },
-  "homepage": "https://github.com/Btibor02/F1-Race-Statistics#readme"
+  "homepage": "https://github.com/Btibor02/F1-Race-Statistics#readme",
+  "dependencies": {
+    "axios": "^1.9.0"
+  }
 }
