@@ -53,6 +53,8 @@ CREATE TABLE IF NOT EXISTS team_standings (
   wins INT,
   PRIMARY KEY (season, round, team_id)
 );
+
+ALTER TABLE users ADD COLUMN is_admin BOOLEAN DEFAULT FALSE;
 `;
 
 conn.query(query, (err, results) => {
