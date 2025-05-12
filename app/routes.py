@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, render_template, request
+from flask import Blueprint, render_template, redirect, url_for, flash, render_template, request, abort
 from flask_login import login_user, logout_user, current_user, login_required
 from .forms import LoginForm, RegistrationForm, PasswordResetForm, ProfileForm
 from .models import User
+from functools import wraps
 from . import db
 
 bp = Blueprint('main', __name__)
@@ -88,3 +89,18 @@ def profile():
         form.fav_team.data = current_user.fav_team or 'team2'
 
     return render_template('profile.html', form=form, user=current_user)
+
+
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not current_user.is_authenticated or current_user.role != 'admin':
+            abort(403)
+        return f(*args, **kwargs)
+    return decorated_function
+
+@bp.route('/admin')
+@admin_required
+def admin_panel():
+    users = User.query.all()
+    return render_template('admin.html', users=users)

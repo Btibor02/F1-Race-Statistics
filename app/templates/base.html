@@ -23,6 +23,10 @@
         <a class="nav-link" href="{{ url_for('main.register') }}">Register</a>
       </li>
     {% endif %}
+
+    {% if current_user.is_authenticated and current_user.role == 'admin' %}
+      <li><a href="{{ url_for('main.admin_panel') }}">Admin</a></li>
+    {% endif %}
   </ul>
 </nav>
 

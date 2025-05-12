@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Admin panel</h2>
+  <p>Logged in admin: <strong>{{ current_user.username }}</strong></p>
+
+  <h3>Users:</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th><th>Username</th><th>Email</th><th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

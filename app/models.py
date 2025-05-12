@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
     fav_driver_1 = db.Column(db.String(5), nullable=True)
     fav_driver_2 = db.Column(db.String(5), nullable=True)
     fav_team = db.Column(db.String(5), nullable=True)
+    role = db.Column(db.String(20), default='user')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

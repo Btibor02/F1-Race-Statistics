@@ -10,6 +10,8 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+
+    from app.models import User
     
     db.init_app(app)
     login_manager.init_app(app)
@@ -19,5 +21,20 @@ def create_app():
 
     with app.app_context():
         db.create_all()
+
+        if not User.query.filter_by(username='admin').first():
+            admin = User(username='admin', email='admin@example.com', role='admin')
+            admin.set_password('Admin123!')
+            db.session.add(admin)
+
+        for i in range(1, 6):
+            username = f'user{i}'
+            email = f'{username}@example.com'
+            if not User.query.filter_by(username=username).first():
+                user = User(username=username, email=email, role='user')
+                user.set_password('User123!')
+                db.session.add(user)
+
+        db.session.commit()
 
     return app
