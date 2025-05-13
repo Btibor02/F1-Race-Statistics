@@ -94,7 +94,7 @@ def profile():
 def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if not current_user.is_authenticated or current_user.role != 'admin':
+        if not current_user.is_authenticated or current_user.is_admin == False:
             abort(403)
         return f(*args, **kwargs)
     return decorated_function
@@ -104,3 +104,18 @@ def admin_required(f):
 def admin_panel():
     users = User.query.all()
     return render_template('admin.html', users=users)
+
+@bp.route('/delete_user/<int:user_id>', methods=['POST'])
+@admin_required
+def delete_user(user_id):
+    user = User.query.get_or_404(user_id)
+    if user.is_admin:
+        flash('You cannot delete an admin user.')
+        return redirect(url_for('main.admin_panel'))
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        flash(f'User {user.username} has been deleted.')
+    else:
+        flash('User not found.')
+    return redirect(url_for('main.admin_panel'))

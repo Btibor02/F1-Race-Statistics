@@ -23,7 +23,7 @@ def create_app():
         db.create_all()
 
         if not User.query.filter_by(username='admin').first():
-            admin = User(username='admin', email='admin@example.com', role='admin')
+            admin = User(username='admin', email='admin@example.com', is_admin=True)
             admin.set_password('Admin123!')
             db.session.add(admin)
 
@@ -31,7 +31,7 @@ def create_app():
             username = f'user{i}'
             email = f'{username}@example.com'
             if not User.query.filter_by(username=username).first():
-                user = User(username=username, email=email, role='user')
+                user = User(username=username, email=email, is_admin=False)
                 user.set_password('User123!')
                 db.session.add(user)
 

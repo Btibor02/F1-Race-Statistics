@@ -24,7 +24,7 @@
       </li>
     {% endif %}
 
-    {% if current_user.is_authenticated and current_user.role == 'admin' %}
+    {% if current_user.is_authenticated and current_user.is_admin == True %}
       <li><a href="{{ url_for('main.admin_panel') }}">Admin</a></li>
     {% endif %}
   </ul>
