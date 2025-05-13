@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, render_template, request, abort
 from flask_login import login_user, logout_user, current_user, login_required
-from .forms import LoginForm, RegistrationForm, PasswordResetForm, ProfileForm
+from .forms import LoginForm, RegistrationForm, PasswordResetForm, ProfileForm, ChangePasswordForm
 from .models import User
 from functools import wraps
 from . import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 bp = Blueprint('main', __name__)
 
@@ -106,7 +107,23 @@ def profile():
 
     return render_template('profile.html', form=form, user=current_user)
 
+@bp.route('/change-password', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    form = ChangePasswordForm()
 
+    if form.validate_on_submit():
+        if not check_password_hash(current_user.password_hash, form.old_password.data):
+            flash('Old password is incorrect')
+            return redirect(url_for('main.change_password'))
+
+        current_user.password_hash = generate_password_hash(form.new_password.data)
+        db.session.commit()
+
+        flash('Your password has been updated!')
+        return redirect(url_for('main.profile'))
+       
+    return render_template('change_password.html', form=form)
 
 
 def admin_required(f):
