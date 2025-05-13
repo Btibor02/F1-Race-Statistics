@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Profile</h2>
-  <p><strong>Username:</strong> {{ user.username }}</p>
-  <p><strong>Email:</strong> {{ user.email }}</p>
-
-  <h3>Update Your Favorites</h3>
-
+  
   <form method="POST">
     {{ form.hidden_tag() }}
 
+    <h2>Profile</h2>
+    
+    <p>
+        {{ form.username.label }}<br>
+        {{ form.username(size=32) }}
+    </p>
+    
+    <p>
+        {{ form.email.label }}<br>
+        {{ form.email(size=32) }}
+    </p>
+
+    <h3>Update Your Favorites</h3>
     <div class="mb-3">
       <label for="fav_driver_1">Favorite Driver 1</label>
       {{ form.fav_driver_1(class="form-control") }}

@@ -64,6 +64,20 @@ def profile():
     form = ProfileForm()
 
     if form.validate_on_submit():
+        if form.username.data != current_user.username:
+            existing_user = User.query.filter_by(username=form.username.data).first()
+            if existing_user:
+                flash('Username already exists. Please choose a different one.')
+                return redirect(url_for('main.profile'))
+        current_user.username = form.username.data
+
+        if form.email.data != current_user.email:
+            existing_email = User.query.filter_by(email=form.email.data).first()
+            if existing_email:
+                flash('Email already exists. Please choose a different one.')
+                return redirect(url_for('main.profile'))
+        current_user.email = form.email.data
+
         valid_drivers = ['dri1', 'dri2', 'dri3']
         if form.fav_driver_1.data not in valid_drivers:
             form.fav_driver_1.data = 'dri2'
@@ -84,11 +98,15 @@ def profile():
         return redirect(url_for('main.profile')) 
 
     if request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data = current_user.email
         form.fav_driver_1.data = current_user.fav_driver_1 or 'dri2'
         form.fav_driver_2.data = current_user.fav_driver_2 or 'dri2'
         form.fav_team.data = current_user.fav_team or 'team2'
 
     return render_template('profile.html', form=form, user=current_user)
+
+
 
 
 def admin_required(f):
