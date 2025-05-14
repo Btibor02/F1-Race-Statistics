@@ -26,12 +26,16 @@ def create_app():
     from .api_routes import api_bp
     app.register_blueprint(api_bp)
 
+    from app.data_loader import save_drivers
+    from app.data_loader import save_teams
     from app.data_loader import save_driver_standings
     
 
     with app.app_context():
         db.create_all()
 
+        save_drivers(2024)
+        save_teams(2024)
         save_driver_standings(2024)
         if not User.query.filter_by(username='admin').first():
             admin = User(username='admin', email='admin@example.com', is_admin=True)

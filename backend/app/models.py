@@ -25,15 +25,30 @@ class User(db.Model, UserMixin):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+class Driver(db.Model):
+    __tablename__ = 'drivers'
+
+    driver_id = db.Column(db.String(20), primary_key=True)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    dob = db.Column(db.Date, nullable=False)
+    nationality = db.Column(db.String(50), nullable=False)
+    code = db.Column(db.String(5), nullable=False)
+
+class Team(db.Model):
+    __tablename__ = 'teams'
+
+    team_id = db.Column(db.String(20), primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    nationality = db.Column(db.String(50), nullable=False)
+
 class DriverStanding(db.Model):
     __tablename__ = 'driver_standings'
 
-    id = db.Column(db.Integer, primary_key=True)
+    driver_id = db.Column(db.String(20), nullable=False, primary_key=True)
     season = db.Column(db.Integer, nullable=False)
     round = db.Column(db.Integer, nullable=False)
-    driver_id = db.Column(db.String(20), nullable=False)
     position = db.Column(db.Integer, nullable=False)
     points = db.Column(db.Integer, nullable=False)
     wins = db.Column(db.Integer, nullable=False)
     
-    __table_args__ = (db.UniqueConstraint('driver_id', name='uq_driver_standing'),)

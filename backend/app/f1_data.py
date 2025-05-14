@@ -3,6 +3,20 @@ import fastf1
 
 ERGAST_BASE = "https://ergast.com/api/f1"
 
+def get_drivers(year):
+    url = f"{ERGAST_BASE}/{year}/drivers.json"
+    res = requests.get(url)
+    if res.status_code == 200:
+        return res.json()['MRData']['DriverTable']['Drivers']
+    return []
+
+def get_constructors(year):
+    url = f"{ERGAST_BASE}/{year}/constructors.json"
+    res = requests.get(url)
+    if res.status_code == 200:
+        return res.json()['MRData']['ConstructorTable']['Constructors']
+    return []
+
 def get_season_schedule(year):
     url = f"{ERGAST_BASE}/{year}.json"
     res = requests.get(url)
