@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="race-card">
+        <h2 class="mb-4">Profile</h2>
+        <form method="POST">
+          {{ form.hidden_tag() }}
+          <div class="mb-3">{{ form.username.label }} {{ form.username(class="form-control") }}</div>
+          <div class="mb-3">{{ form.email.label }} {{ form.email(class="form-control") }}</div>
+          <h4 class="mt-4">Favorite Picks</h4>
+          <div class="mb-3">{{ form.fav_driver_1.label }} {{ form.fav_driver_1(class="form-control") }}</div>
+          <div class="mb-3">{{ form.fav_driver_2.label }} {{ form.fav_driver_2(class="form-control") }}</div>
+          <div class="mb-3">{{ form.fav_team.label }} {{ form.fav_team(class="form-control") }}</div>
+          <button type="submit" class="btn btn-f1 w-100">Save Changes</button>
+        </form>
+        <div class="text-center mt-3">
+          <a href="{{ url_for('main.change_password') }}">Change Password</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

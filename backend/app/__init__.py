@@ -2,13 +2,16 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from config import Config
+import os
 
 login_manager = LoginManager()
 login_manager.login_view = 'main.login'
 db = SQLAlchemy()
 
 def create_app():
-    app = Flask(__name__)
+    basedir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    templates_path = os.path.join(basedir, 'frontend', 'templates')
+    app = Flask(__name__, template_folder=templates_path)
     app.config.from_object(Config)
 
     from app.models import User
