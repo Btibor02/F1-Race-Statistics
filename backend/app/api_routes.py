@@ -23,6 +23,10 @@ def api_results(year, round_num):
 def api_standings(year):
     return jsonify(f1_data.get_driver_standings(year))
 
+@api_bp.route('/api/<int:year>/constructorStandings/')
+def api_team_standings(year):
+    return jsonify(f1_data.get_team_standings(year))
+
 @api_bp.route('/api/lapstats/<int:year>/<int:round_num>')
 def api_lap_stats(year, round_num):
     return jsonify(f1_data.get_race_data(year, round_num))

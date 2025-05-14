@@ -1,5 +1,5 @@
-from app.f1_data import get_driver_standings, get_drivers, get_constructors
-from app.models import DriverStanding, Driver, Team
+from app.f1_data import get_driver_standings, get_drivers, get_constructors, get_team_standings
+from app.models import DriverStanding, Driver, Team, TeamStanding
 from app import db
 
 def save_drivers(year):
@@ -83,6 +83,36 @@ def save_driver_standings(year):
                     wins=wins
                 )
                 db.session.add(driver_standing)
+        db.session.commit()
+    else:
+        print(f"No standings data found for {year}")
+
+def save_team_standings(year):
+    standings = get_team_standings(year)
+    round = int(standings[0].get('round', 1))
+    if standings:
+        for standing in standings:
+            team_id = standing['Constructor']['constructorId']
+            position = int(standing['position'])
+            points = float(standing['points'])
+            wins = int(standing['wins'])
+
+            existing_standing = TeamStanding.query.filter_by(team_id=team_id).first()
+
+            if existing_standing:
+                existing_standing.position = position
+                existing_standing.points = points
+                existing_standing.wins = wins
+            else:
+                team_standing = TeamStanding(
+                    season=year,
+                    round=round,
+                    team_id=team_id,
+                    position=position,
+                    points=points,
+                    wins=wins
+                )
+                db.session.add(team_standing)
         db.session.commit()
     else:
         print(f"No standings data found for {year}")

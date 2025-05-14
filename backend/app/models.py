@@ -51,4 +51,14 @@ class DriverStanding(db.Model):
     position = db.Column(db.Integer, nullable=False)
     points = db.Column(db.Integer, nullable=False)
     wins = db.Column(db.Integer, nullable=False)
+
+class TeamStanding(db.Model):
+    __tablename__ = 'team_standings'
+
+    team_id = db.Column(db.String(20), nullable=False, primary_key=True)
+    season = db.Column(db.Integer, nullable=False)
+    round = db.Column(db.Integer, nullable=False)
+    position = db.Column(db.Integer, nullable=False)
+    points = db.Column(db.Integer, nullable=False)
+    wins = db.Column(db.Integer, nullable=False)
     

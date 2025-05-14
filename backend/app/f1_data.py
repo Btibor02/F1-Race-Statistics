@@ -38,6 +38,13 @@ def get_driver_standings(year):
         return res.json()['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings']
     return []
 
+def get_team_standings(year):
+    url = f"{ERGAST_BASE}/{year}/constructorStandings.json"
+    res = requests.get(url)
+    if res.status_code == 200:
+        return res.json()['MRData']['StandingsTable']['StandingsLists'][0]['ConstructorStandings']
+    return []
+
 def get_race_data(season, round_num):
     try:
         session = fastf1.get_session(season, round_num, 'R')
