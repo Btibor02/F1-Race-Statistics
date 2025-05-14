@@ -19,18 +19,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
          <ul class="navbar-nav ms-auto">
-        {% if current_user.is_authenticated %}
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('main.profile') }}">Profile</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('main.logout') }}">Logout</a></li>
-        {% else %}
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('main.login') }}">Log in</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('main.register') }}">Register</a></li>
-        {% endif %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('main.race_details') }}">Races</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('main.about') }}">About</a></li>
+          {% if current_user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('main.profile') }}">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('main.logout') }}">Logout</a></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('main.login') }}">Log in</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('main.register') }}">Register</a></li>
+          {% endif %}
 
-        {% if current_user.is_authenticated and current_user.is_admin == True %}
-          <li><a href="{{ url_for('main.admin_panel') }}">Admin</a></li>
-        {% endif %}
-      </ul>
+          {% if current_user.is_authenticated and current_user.is_admin == True %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('main.admin_panel') }}">Admin</a></li>
+          {% endif %}
+        </ul>
       </div>
     </div>
   </nav>
@@ -51,7 +53,7 @@
         <div class="race-card">
           <h4>🇬🇧 British Grand Prix - Silverstone 2023</h4>
           <p>See race stats, lap times, and more.</p>
-          <a href="race_details.html?race_id=british_2023" class="btn btn-f1">View Details</a>
+          <a href="race_details.html" class="btn btn-f1">View Details</a>
         </div>
       </div>
       <div class="col-md-6 col-lg-4">
