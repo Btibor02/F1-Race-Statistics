@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - F1 Stats</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">F1 Stats</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="race_details.html">Races</a></li>
+          <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Log in</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Section -->
+  <section class="about-header text-center">
+    <div class="container">
+      <h1>About the Project</h1>
+      <p>This project showcases Formula 1 race statistics using FastF1 and Flask.</p>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="container my-5">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="about-card">
+          <h4>Our Mission</h4>
+          <p>To provide F1 fans with real-time race analytics and visualizations in a sleek and responsive web interface.</p>
+        </div>
+        <div class="about-card">
+          <h4>Technology Stack</h4>
+          <ul>
+            <li>Frontend: HTML, CSS, Bootstrap</li>
+            <li>Backend: Python, Flask, FastF1</li>
+            <li>Database: SQLite + SQLAlchemy</li>
+            <li>Visualization: Chart.js</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="about-card">
+          <h4>Meet the Team</h4>
+          <ul>
+            <li>Frontend Developer (HTML/CSS): Daniel Marcarini</li>
+            <li>Frontend Developer (JavaScript/Charts): Arda Dzhoshkun</li>
+            <li>Backend Developer (Flask & FastF1): Hakan Ibryam</li>
+            <li>Database & Documentation Specialist: Daniel Holderik</li>
+            <li>User Authentication Engineer: Tibor Blascsok</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 F1 Stats App | Built by Group 5 FullStack project</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

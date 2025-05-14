@@ -1,0 +1,186 @@
+/* index.html css */
+body {
+    font-family: 'Titillium Web', sans-serif;
+    background-color: #111;
+    color: #fff;
+  }
+  
+  .navbar {
+    background-color: #000;
+  }
+  
+  .navbar-brand,
+  .nav-link {
+    color: #fff !important;
+  }
+  
+  .nav-link:hover {
+    color: #e10600 !important;
+  }
+  
+  .hero {
+    background-color: #1c1c1c;
+    padding: 80px 20px;
+  }
+  
+  .f1-logo {
+    width: 150px;
+    max-width: 80%;
+    height: auto;
+  }
+  
+  .hero h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #e10600;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    color: #ccc;
+  }
+  
+  .race-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
+  }
+  
+  .race-card:hover {
+    transform: scale(1.02);
+    border-color: #e10600;
+  }
+  
+  .btn-f1 {
+    background-color: #e10600;
+    border: none;
+    color: white;
+  }
+  
+  .btn-f1:hover {
+    background-color: #b00000;
+  }
+  
+  footer {
+    background-color: #000;
+    color: #888;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+
+
+  /* race_details.html css */
+
+  .race-header {
+    background-color: #1c1c1c;
+    padding: 60px 20px;
+  }
+  
+  .race-header h1 {
+    color: #e10600;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .race-header p {
+    font-size: 1.1rem;
+    color: #ccc;
+  }
+  
+  .race-summary-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .chart-placeholder {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+  }
+  
+/* about.html css */
+
+.about-header {
+    background-color: #1c1c1c;
+    padding: 60px 20px;
+  }
+  
+  .about-header h1 {
+    color: #e10600;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .about-header p {
+    font-size: 1.1rem;
+    color: #ccc;
+  }
+  
+  .about-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    color: #fff;
+  }
+  
+  .about-card ul {
+    padding-left: 20px;
+  }
+  
+
+  /* login css */
+
+
+  /* login.html custom styles */
+
+form label {
+  color: #ccc;
+  font-weight: 600;
+}
+
+form .form-control {
+  background-color: #222;
+  border: 1px solid #444;
+  color: #fff;
+}
+
+form .form-control::placeholder {
+  color: #888;
+}
+
+form .form-control:focus {
+  background-color: #222;
+  border-color: #e10600;
+  box-shadow: none;
+  color: #fff;
+}
+
+.race-card h4 {
+  color: #e10600;
+  font-weight: 600;
+}
+
+.btn-f1 {
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .race-card {
+    margin-bottom: 30px;
+  }
+}
