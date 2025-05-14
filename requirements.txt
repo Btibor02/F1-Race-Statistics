@@ -7,3 +7,5 @@ Flask-SQLAlchemy
 Werkzeug
 pytest
 pymysql
+requests
+fastf1

@@ -19,6 +19,9 @@ def create_app():
     from .routes import bp
     app.register_blueprint(bp)
 
+    from .api_routes import api_bp
+    app.register_blueprint(api_bp)
+
     with app.app_context():
         db.create_all()
 
