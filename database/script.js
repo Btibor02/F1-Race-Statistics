@@ -57,7 +57,42 @@ CREATE TABLE IF NOT EXISTS team_standings (
 ALTER TABLE users ADD COLUMN is_admin BOOLEAN DEFAULT FALSE;
 `;
 
-conn.query(query, (err, results) => {
+const query2 = `
+ALTER TABLE users
+ADD CONSTRAINT fk_users_fav_driver_1 FOREIGN KEY (fav_driver_1)
+REFERENCES drivers(driver_id);
+`;
+
+const query3 = `
+ALTER TABLE users
+ADD CONSTRAINT fk_users_fav_driver_2 FOREIGN KEY (fav_driver_2)
+REFERENCES drivers(driver_id);
+`;
+
+const query4 = `
+ALTER TABLE users
+ADD CONSTRAINT fk_users_fav_team FOREIGN KEY (fav_team)
+REFERENCES teams(team_id);
+`;
+
+const query5 = `
+ALTER TABLE drivers
+ADD CONSTRAINT fk_drivers_team FOREIGN KEY (team_id)
+REFERENCES teams(team_id);
+`;
+
+const query6 = `
+ALTER TABLE driver_standings
+ADD CONSTRAINT fk_driver_standings_driver FOREIGN KEY (driver_id)
+REFERENCES drivers(driver_id);
+`;
+
+const query7 = `
+ALTER TABLE team_standings
+ADD CONSTRAINT fk_team_standings_team FOREIGN KEY (team_id)
+REFERENCES teams(team_id);
+`;
+conn.query(query7, (err, results) => {
     if (err) {
         console.error('Error creating tables:', err);
         return;
