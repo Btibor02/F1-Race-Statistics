@@ -24,3 +24,16 @@ class User(db.Model, UserMixin):
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+class DriverStanding(db.Model):
+    __tablename__ = 'driver_standings'
+
+    id = db.Column(db.Integer, primary_key=True)
+    season = db.Column(db.Integer, nullable=False)
+    round = db.Column(db.Integer, nullable=False)
+    driver_id = db.Column(db.String(20), nullable=False)
+    position = db.Column(db.Integer, nullable=False)
+    points = db.Column(db.Integer, nullable=False)
+    wins = db.Column(db.Integer, nullable=False)
+    
+    __table_args__ = (db.UniqueConstraint('driver_id', name='uq_driver_standing'),)
