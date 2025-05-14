@@ -11,7 +11,8 @@ db = SQLAlchemy()
 def create_app():
     basedir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     templates_path = os.path.join(basedir, 'frontend', 'templates')
-    app = Flask(__name__, template_folder=templates_path)
+    static_path = os.path.join(basedir, 'frontend', 'static')
+    app = Flask(__name__, template_folder=templates_path, static_folder=static_path)
     app.config.from_object(Config)
 
     from app.models import User

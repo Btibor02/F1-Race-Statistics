@@ -10,7 +10,7 @@ bp = Blueprint('main', __name__)
 
 @bp.route('/')
 def index():
-    return redirect(url_for('main.login'))
+    return render_template('index.html')
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
