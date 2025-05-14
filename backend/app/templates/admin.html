@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Admin panel</h2>
+  <p>Logged in admin: <strong>{{ current_user.username }}</strong></p>
+
+  <h3>Users:</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th><th>Username</th><th>Email</th><th>Admin</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ '✔️' if user.is_admin else '' }}</td>
+          <td>
+                {% if not user.is_admin %}
+                <form method="post" action="{{ url_for('main.delete_user', user_id=user.id) }}">
+                    <button type="submit">Delete user</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
