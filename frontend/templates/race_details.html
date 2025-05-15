@@ -64,14 +64,34 @@
       </div>
       <div class="col-md-6">
         <div class="chart-placeholder">
-          <!-- Chart.js visual will go here -->
           <h5>Lap Time Chart</h5>
           <canvas id="lapTimeChart"></canvas>
         </div>
       </div>
     </div>
   </section>
+  <!-- Additional Charts -->
+  <section class="container my-5">
+    <h3 class="mb-4">Additional Race Statistics</h3>
+    <div class="row gy-5">
 
+      <div class="col-md-6">
+        <h5>Driver Standings by Season</h5>
+        <canvas id="driverStandingsChart"></canvas>
+      </div>
+
+      <div class="col-md-6">
+        <h5>Driver Nationalities Distribution</h5>
+        <canvas id="nationalityPieChart"></canvas>
+      </div>
+
+      <div class="col-md-6">
+        <h5>Top Wins by Drivers</h5>
+        <canvas id="topWinsChart"></canvas>
+      </div>
+
+    </div>
+  </section>
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -80,6 +100,15 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Chart.js would be included by your JS teammate -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Chart.js modules -->
+  <script type="module" src="{{ url_for('static', filename='js/lapTimeChart.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/fastestLapsChart.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/speedTrapChart.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/driverStandingsChart.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/nationalityPieChart.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/topWinsChart.js') }}"></script>
+
 </body>
 </html>
