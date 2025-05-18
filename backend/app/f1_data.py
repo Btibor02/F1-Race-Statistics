@@ -19,7 +19,7 @@ def get_constructors(year):
 
 def get_season_schedule(year):
     url = f"{ERGAST_BASE}/{year}.json"
-    res = requests.get(url)
+    res = requests.get(url) 
     if res.status_code == 200:
         return res.json()['MRData']['RaceTable']['Races']
     return []

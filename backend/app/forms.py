@@ -44,10 +44,49 @@ class ChangePasswordForm(FlaskForm):
     confirm_password = PasswordField('Confirm New Password', validators=[DataRequired(), EqualTo('new_password')])
     submit = SubmitField('Change Password')
 
+F1_DRIVERS = [
+    ('oscar_piastri', 'Oscar Piastri'),
+    ('lando_norris', 'Lando Norris'),
+    ('lewis_hamilton', 'Lewis Hamilton'),
+    ('george_russell', 'George Russell'),
+    ('charles_leclerc', 'Charles Leclerc'),
+    ('carlos_sainz', 'Carlos Sainz'),
+    ('max_verstappen', 'Max Verstappen'),
+    ('kimi_antonelli', 'Kimi Antonelli'),
+    ('lance_stroll', 'Lance Stroll'),
+    ('fernando_alonso', 'Fernando Alonso'),
+    ('alex_albon', 'Alexander Albon'),
+    ('esteban_ocon', 'Esteban Ocon'),
+    ('pierre_gasly', 'Pierre Gasly'),
+    ('yuki_tsunoda', 'Yuki Tsunoda'),
+    ('nico_hulkenberg', 'Nico Hulkenberg'),
+    ('oliver_bearman', 'Oliver Bearman'),
+    ('isack_hadjar', 'Isack Hadjar'),
+    ('liam_lawson', 'Liam Lawson'),
+    ('jack_doohan', 'Jack Doohan'),
+    ('gabriel_bortoleto', 'Gabriel Bortoleto'),
+    ('franco_colapinto', 'Franco Colapinto'),
+]
+
+F1_TEAMS = [
+    ('mclaren', 'McLaren'),
+    ('mercedes', 'Mercedes'),
+    ('ferrari', 'Ferrari'),
+    ('red_bull', 'Red Bull Racing'),
+    ('aston_martin', 'Aston Martin'),
+    ('alpine', 'Alpine'),
+    ('williams', 'Williams'),
+    ('haas', 'Haas F1 Team'),
+    ('racing_bulls', 'Racing Bulls'),
+    ('kick_sauber', 'Kick Sauber'),
+]
+    
+
+
 class ProfileForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=3, max=50)])
     email = StringField('Email', validators=[DataRequired(), Email(), Length(max=120)])
-    fav_driver_1 = SelectField('Favorite Driver 1', choices=[('dri1', 'Driver 1'), ('dri2', 'Driver 2'), ('dri3', 'Driver 3')], validators=[DataRequired()])
-    fav_driver_2 = SelectField('Favorite Driver 2', choices=[('dri1', 'Driver 1'), ('dri2', 'Driver 2'), ('dri3', 'Driver 3')], validators=[DataRequired()])
-    fav_team = SelectField('Favorite Team', choices=[('team1', 'Team 1'), ('team2', 'Team 2'), ('team3', 'Team 3')], validators=[DataRequired()])
+    fav_driver_1 = SelectField('Favorite Driver 1', choices=F1_DRIVERS, validators=[DataRequired()])
+    fav_driver_2 = SelectField('Favorite Driver 2', choices=F1_DRIVERS, validators=[DataRequired()])
+    fav_team = SelectField('Favorite Team', choices=F1_TEAMS, validators=[DataRequired()])
     submit = SubmitField('Update Profile')

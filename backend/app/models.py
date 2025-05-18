@@ -10,9 +10,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(150), unique=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
-    fav_driver_1 = db.Column(db.String(5), nullable=True)
-    fav_driver_2 = db.Column(db.String(5), nullable=True)
-    fav_team = db.Column(db.String(5), nullable=True)
+    fav_driver_1 = db.Column(db.String(150), nullable=True)
+    fav_driver_2 = db.Column(db.String(150), nullable=True)
+    fav_team = db.Column(db.String(150), nullable=True)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
 
     def set_password(self, password):

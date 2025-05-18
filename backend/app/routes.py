@@ -87,16 +87,9 @@ def profile():
                 return redirect(url_for('main.profile'))
         current_user.email = form.email.data
 
-        valid_drivers = ['dri1', 'dri2', 'dri3']
-        if form.fav_driver_1.data not in valid_drivers:
-            form.fav_driver_1.data = 'dri2'
-        if form.fav_driver_2.data not in valid_drivers:
-            form.fav_driver_2.data = 'dri2'
-
-        valid_teams = ['team1', 'team2', 'team3']
-        if form.fav_team.data not in valid_teams:
-            form.fav_team.data = 'team2'
-
+        if form.fav_driver_1.data == form.fav_driver_2.data:
+            flash('Please select two different drivers.')
+            return redirect(url_for('main.profile'))
 
         current_user.fav_driver_1 = form.fav_driver_1.data
         current_user.fav_driver_2 = form.fav_driver_2.data
@@ -109,9 +102,9 @@ def profile():
     if request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
-        form.fav_driver_1.data = current_user.fav_driver_1 or 'dri2'
-        form.fav_driver_2.data = current_user.fav_driver_2 or 'dri2'
-        form.fav_team.data = current_user.fav_team or 'team2'
+        form.fav_driver_1.data = current_user.fav_driver_1 or 'Lando Norris'
+        form.fav_driver_2.data = current_user.fav_driver_2 or 'Yuki Tsunoda'
+        form.fav_team.data = current_user.fav_team or 'McLaren'
 
     return render_template('profile.html', form=form, user=current_user)
 
