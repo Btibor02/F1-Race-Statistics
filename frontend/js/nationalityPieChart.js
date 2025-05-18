@@ -30,9 +30,10 @@ import { fetchJSON } from './utilities.js';
   });
 })();
 
+// Utility to generate a random RGB color
 function randomColor() {
   const r = Math.floor(Math.random() * 150);
   const g = Math.floor(Math.random() * 150);
   const b = Math.floor(Math.random() * 150);
-  return rgb(${r},${g},${b});
+  return String( "rgb(${r},${g},${b})");
 }
