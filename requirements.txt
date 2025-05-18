@@ -9,3 +9,4 @@ pytest
 pymysql
 requests
 fastf1
+gunicorn
