@@ -1,6 +1,7 @@
 from app.f1_data import get_driver_standings, get_drivers, get_constructors, get_team_standings
 from app.models import DriverStanding, Driver, Team, TeamStanding
 from app import db
+from datetime import datetime
 
 def save_drivers(year):
     drivers = get_drivers(year)
@@ -9,7 +10,7 @@ def save_drivers(year):
             driver_id = driver['driverId']
             first_name = driver['givenName']
             last_name = driver['familyName']
-            dob = driver['dateOfBirth']
+            dob = datetime.strptime(driver['dateOfBirth'], "%Y-%m-%d").date()
             nationality = driver['nationality']
             code = driver['code']
 
