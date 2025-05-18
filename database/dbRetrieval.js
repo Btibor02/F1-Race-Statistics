@@ -1,14 +1,22 @@
 //retrieve from the Database
-const db = require('./dbConnection');
+const connectdb = require('./dbConnection');
 
 async function getUserByName(username){
+    const db = await connectdb();
+    try{
     const [rows] = await db.query('SELECT * FROM users WHERE username = ?', [username]);
-    return rows[0]; 
+    return rows[0]; }finally{
+        await db.end();
+    }
 } //retunr only one row (username)
 
 async function getUserFavs(username){
+    const db = await connectdb();
+    try{
     const [rows] = await db.query('SELECT fav_driver_1, fav_driver_2, fav_team FROM users WHERE username = ?', [username]);
-    return rows[0];
+    return rows[0];}finally{
+await db.end();
+    }
 }// ex. of a return 
 //    {
 //     fav_driver_1: 'VER',
@@ -19,8 +27,12 @@ async function getUserFavs(username){
 //
 
 async function getDriverById(driverId){
-    cosnt [rows] = await db.query('SELECT * FROM drivers WHERE driver_id = ?', [driverId]);
-    return rows[0];
+    const db = await connectdb();
+    try{
+    const [rows] = await db.query('SELECT * FROM drivers WHERE driver_id = ?', [driverId]);
+    return rows[0];}finally{
+        await db.end();
+    }
 }
 // {
 // driver_id: 'GAS',
@@ -32,8 +44,12 @@ async function getDriverById(driverId){
 // team_id: 'ALP'
 
 async function getTeamById(teamId){
+    const db = await connectdb();
+    try{
     const [rows] = await db.query('SELECT * FROM teams WHERE team_id = ?', [teamId]);
-    return rows[0];
+    return rows[0];}finally{
+        await db.end();
+    }
 
 }
 //{
@@ -43,8 +59,13 @@ async function getTeamById(teamId){
 // }
 
 async function getTeamStandings(season){
+    const db = await connectdb();
+    try{
+
 const [rows] = await db.query('SELECT * FROM team_standings WHERE season = ?', [season]);
-return rows;
+return rows;}finally{
+    await db.end();
+    }
 }
 // standing per sepecific season
 // {
@@ -58,8 +79,12 @@ return rows;
 
 
 async function getDriverStandings(season){
+    const db = await connectdb();
+    try{
     const [rows] = await db.query('SELECT * FROM driver_standings WHERE season = ?', [season]);
-    return rows;
+    return rows;}finally{
+        await db.end();
+    }
 }
 //drivers standings per specific season
 //     season: '2023',
@@ -71,8 +96,12 @@ async function getDriverStandings(season){
 
 
 async function getAllTeamInfo(){
+    const db = await connectdb();
+    try{
     const [rows] = await db.query('SELECT * FROM teams');
-    return rows;
+    return rows;}finally{
+        await db.end();
+    }
 }
 //{
 // team_id: 'RBR',
@@ -81,8 +110,12 @@ async function getAllTeamInfo(){
 // }
 
 async function getAllDriverInfo(){  
+    const db = await connectdb();
+    try{
     const [rows] = await db.query('SELECT * FROM drivers');
-    return rows;
+    return rows;}finally{
+        await db.end();
+    }
 }
 //{
 // team_id: 'RBR',
