@@ -43,5 +43,5 @@ function randomColor() {
   const r = Math.floor(Math.random() * 150);
   const g = Math.floor(Math.random() * 150);
   const b = Math.floor(Math.random() * 150);
-  return String( "rgb(${r},${g},${b})");
+  return `rgb(${r},${g},${b})`;
 }
