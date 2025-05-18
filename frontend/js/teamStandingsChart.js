@@ -1,20 +1,19 @@
 import { fetchJSON } from './utilities.js';
 
 (async () => {
-  const rawData = await fetchJSON('/api/driver_standings');
-  const labels = rawData.map(item => item.driver); 
+  const rawData = await fetchJSON('/api/team_standings');
+  const labels = rawData.map(item => item.team_id);
   const points = rawData.map(item => item.points);
 
   const data = {
     labels,
     datasets: [{
-      label: 'Driver Points',
+      label: 'Team Points',
       data: points,
       backgroundColor: labels.map(() => randomColor())
     }]
   };
-
-  const ctx = document.getElementById('driverStandingsChart').getContext('2d');
+  const ctx = document.getElementById('teamStandingsChart').getContext('2d');
   new Chart(ctx, {
     type: 'bar',
     data,
@@ -23,7 +22,7 @@ import { fetchJSON } from './utilities.js';
       plugins: {
         title: {
           display: true,
-          text: 'Driver Standings since the last 5 Seasons'
+          text: 'Team Standings since the last five seasons'
         }
       },
       scales: {
@@ -32,13 +31,14 @@ import { fetchJSON } from './utilities.js';
           title: { display: true, text: 'Points' }
         },
         x: {
-          title: { display: true, text: 'Driver' }
+          title: { display: true, text: 'Team' }
         }
       }
     }
   });
 })();
 
+// Utility to generate a random RGB color
 function randomColor() {
   const r = Math.floor(Math.random() * 150);
   const g = Math.floor(Math.random() * 150);

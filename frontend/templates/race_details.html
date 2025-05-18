@@ -86,8 +86,8 @@
       </div>
 
       <div class="col-md-6">
-        <h5>Top Wins by Drivers</h5>
-        <canvas id="topWinsChart"></canvas>
+        <h5>Team Standings by Season</h5>
+        <canvas id="teamStandingsChart"></canvas>
       </div>
 
     </div>
@@ -103,12 +103,9 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- Chart.js modules -->
-  <script type="module" src="{{ url_for('static', filename='js/lapTimeChart.js') }}"></script>
-  <script type="module" src="{{ url_for('static', filename='js/fastestLapsChart.js') }}"></script>
-  <script type="module" src="{{ url_for('static', filename='js/speedTrapChart.js') }}"></script>
   <script type="module" src="{{ url_for('static', filename='js/driverStandingsChart.js') }}"></script>
   <script type="module" src="{{ url_for('static', filename='js/nationalityPieChart.js') }}"></script>
-  <script type="module" src="{{ url_for('static', filename='js/topWinsChart.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/teamStandingsChart.js') }}"></script>
 
 </body>
 </html>
