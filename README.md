@@ -63,8 +63,8 @@ To provide F1 fans with an engaging platform for real-time race analytics and da
 
 ```bash
 # Clone the repository
-git clone https://github.com/Btibor02/f1-dashboard.git
-cd f1-dashboard
+git clone https://github.com/Btibor02/F1-Race-Statistics.git
+cd F1-Race-Statistics
 
 # Install dependencies
 pip install -r requirements.txt
