@@ -1,11 +1,12 @@
 import { fetchJSON } from './utilities.js';
 
-(async () => {
-  const rawData = await fetchJSON('/api/2024/constructorStandings/');
+const ctx = document.getElementById('teamStandingsChart').getContext('2d');
+let chart;
+
+async function loadTeamData(season) {
+  const rawData = await fetchJSON(`/api/${season}/constructorStandings/`);
   const labels = rawData.map(item => item.Constructor.name);
   const points = rawData.map(item => item.points);
-
-  console.log(rawData)
 
   const data = {
     labels,
@@ -15,8 +16,11 @@ import { fetchJSON } from './utilities.js';
       backgroundColor: labels.map(() => randomColor())
     }]
   };
-  const ctx = document.getElementById('teamStandingsChart').getContext('2d');
-  new Chart(ctx, {
+
+  if (chart) {
+    chart.destroy();
+  }
+  chart = new Chart(ctx, {
     type: 'bar',
     data,
     options: {
@@ -24,7 +28,7 @@ import { fetchJSON } from './utilities.js';
       plugins: {
         title: {
           display: true,
-          text: 'Team Standings since the last five seasons'
+          text: `Team Standings - ${season}`
         }
       },
       scales: {
@@ -38,7 +42,14 @@ import { fetchJSON } from './utilities.js';
       }
     }
   });
-})();
+};
+
+const seasonSelector = document.getElementById('seasonSelector');
+loadTeamData(seasonSelector.value);
+
+seasonSelector.addEventListener('change', () => {
+  loadTeamData(seasonSelector.value);
+});
 
 // Utility to generate a random RGB color
 function randomColor() {

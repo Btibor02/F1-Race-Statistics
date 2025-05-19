@@ -1,7 +1,10 @@
 import { fetchJSON } from './utilities.js';
 
-(async () => {
-  const rawData = await fetchJSON('/api/standings/2024');
+const ctx = document.getElementById('driverStandingsChart').getContext('2d');
+let chart;
+
+async function loadDriverData(season) {
+  const rawData = await fetchJSON(`/api/standings/${season}`);
   const labels = rawData.map(item => item.Driver.code); 
   const points = rawData.map(item => item.points);
 
@@ -14,8 +17,10 @@ import { fetchJSON } from './utilities.js';
     }]
   };
 
-  const ctx = document.getElementById('driverStandingsChart').getContext('2d');
-  new Chart(ctx, {
+  if (chart) {
+    chart.destroy();
+  }
+  chart = new Chart(ctx, {
     type: 'bar',
     data,
     options: {
@@ -23,7 +28,7 @@ import { fetchJSON } from './utilities.js';
       plugins: {
         title: {
           display: true,
-          text: 'Driver Standings since the last 5 Seasons'
+          text: `Driver Standings  - ${season}`
         }
       },
       scales: {
@@ -37,7 +42,14 @@ import { fetchJSON } from './utilities.js';
       }
     }
   });
-})();
+};
+
+const seasonSelector = document.getElementById('seasonSelector');
+loadDriverData(seasonSelector.value);
+
+seasonSelector.addEventListener('change', () => {
+  loadDriverData(seasonSelector.value);
+});
 
 // Utility to generate a random RGB color
 function randomColor() {
